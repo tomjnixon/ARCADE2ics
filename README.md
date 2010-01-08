@@ -7,11 +7,21 @@ have the latest version available.
 
 Installation
 ------------
-- Extract this directory.
-- Run 'setup' on the computer which you wish to run this on
-  (this will install it into your crontab).
-  - For example, to run this on soba.cs.man.ac.uk:
-    $ ssh user_name@soba.cs.man.ac.uk ~/ARCADE2ics/setup
+-   Get the source. Either:
+    -   Download and extract http://cloud.github.com/downloads/tomjnixon/ARCADE2ics/ARCADE2ics-0.1.tar.gz
+
+            $ wget http://cloud.github.com/downloads/tomjnixon/ARCADE2ics/ARCADE2ics-0.1.tar.gz
+            $ tar -xzvf ARCADE2ics-0.1.tar.gz
+
+    -   Check out the latest version from git:
+
+             & git clone git://github.com/tomjnixon/ARCADE2ics.git
+
+-   Run 'setup' on the computer which you wish to run this on
+    (this will install it into your crontab).
+    -   For example, to run this on soba.cs.man.ac.uk:
+
+            $ ssh user_name@soba.cs.man.ac.uk ~/ARCADE2ics/setup
 
 Usage
 -----
