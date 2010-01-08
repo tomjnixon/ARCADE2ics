@@ -1,0 +1,8 @@
+dir=$(dirname $(readlink -f $0))
+cd $dir
+
+echo "30 3 * * * $dir/run.py" > crontab
+
+crontab crontab
+
+$dir/run.py
