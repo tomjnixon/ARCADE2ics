@@ -1,7 +1,10 @@
+#!/bin/bash
+
 dir=$(dirname $(readlink -f $0))
 cd $dir
 
-echo "30 3 * * * $dir/run.py" > crontab
+crontab -l | grep -v ARCADE2ics > crontab
+echo "30 3 * * * $dir/run.py" >> crontab
 
 crontab crontab
 
