@@ -21,7 +21,7 @@ Installation
     (this will install it into your crontab).
     -   For example, to run this on soba.cs.man.ac.uk:
 
-            $ ssh user_name@soba.cs.man.ac.uk ~/ARCADE2ics/setup
+            $ ssh user_name@soba.cs.man.ac.uk "~/ARCADE2ics/setup"
 
 Usage
 -----
@@ -34,8 +34,6 @@ Usage
 
 Licence
 -------
-All ARCADE2ics code is published under the MIT Licence (see MIT-LICENCE.txt),
-and Copyright (c) 2010 Thomas Nixon
+All ARCADE2ics code is published under the MIT Licence (see MIT-LICENCE.txt), and is copyright (c) 2010 Thomas Nixon.
 
-The iCalendar module is published under the LGPL (see icalendar/LICENCE.txt)
-From [http://codespeak.net/icalendar/](http://codespeak.net/icalendar/), some modifications.
+The iCalendar module is published under the LGPL (see icalendar/LICENCE.txt), from [http://codespeak.net/icalendar/](http://codespeak.net/icalendar/), some modifications.
