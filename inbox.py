@@ -1,5 +1,6 @@
 import mbox
 import config
+from compatibility import all
 
 def is_line(line):
     """Is line full of dashes?"""

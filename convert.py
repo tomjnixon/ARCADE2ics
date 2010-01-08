@@ -71,11 +71,17 @@ def parse_time(time_str):
     """
     if time_str == "noon":
         return (0, 12)
+
     match = time_parse_re.match(time_str)
     hour = int(match.group(1))
     if match.group(3) == "pm" and hour != 12:
         hour += 12
-    minute = int(match.group(2)) if match.group(2) else 0
+
+    if match.group(2):
+        minute = int(match.group(2))
+    else:
+        minute = 0
+    
     return (minute, hour)
     
 

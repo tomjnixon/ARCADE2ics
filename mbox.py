@@ -1,6 +1,7 @@
 import re
 import os
 from datetime import tzinfo, timedelta, datetime
+from compatibility import strptime
 
 ZERO = timedelta(0)
 
@@ -62,8 +63,8 @@ class Message(object):
     def date(self):
         match = date_re.search(self.msg_string)
         if match:
-            time = datetime.strptime(match.group(1).strip(),
-                                     "%a, %d %b %Y %H:%M:%S")
+            time = strptime(match.group(1).strip(),
+                            "%a, %d %b %Y %H:%M:%S")
             return time.replace(tzinfo=utc)
         else:
             return None
