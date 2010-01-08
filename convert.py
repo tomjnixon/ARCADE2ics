@@ -93,8 +93,9 @@ def get_time(event, descriptions):
     if "time" in event:
         minute, hour = parse_time(event["time"])
     else:
-        if event["unit"] in descriptions:
-            minute, hour = parse_time(descriptions[event["unit"]]["time"])
+        description = descriptions.get(event["unit"])
+        if description and "time" in description:
+            minute, hour = parse_time(description["time"])
         else:
             minute, hour = None, None
     return (minute, hour, day, month)
