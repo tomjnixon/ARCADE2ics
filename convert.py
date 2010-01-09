@@ -175,6 +175,8 @@ def write_cal(descriptions_str, events_str, time_stamp, file_name):
     """Write a .ics file to file_name."""
     descriptions = get_descriptions(descriptions_str)
     events = get_events(events_str)
+    ical_string = make_cal(events, descriptions, time_stamp).as_string()
+
     f = open(os.path.expanduser(file_name), 'wb')
-    f.write(make_cal(events, descriptions, time_stamp).as_string())
+    f.write(ical_string)
     f.close()
