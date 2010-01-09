@@ -8,10 +8,10 @@ have the latest version available.
 Installation
 ------------
 -   Get the source. Either:
-    -   Download and extract [ARCADE2ics-0.1.tar.gz](http://cloud.github.com/downloads/tomjnixon/ARCADE2ics/ARCADE2ics-0.1.tar.gz)
+    -   Download and extract [ARCADE2ics-0.1.1.tar.gz](http://cloud.github.com/downloads/tomjnixon/ARCADE2ics/ARCADE2ics-0.1.1.tar.gz)
 
-            $ wget http://cloud.github.com/downloads/tomjnixon/ARCADE2ics/ARCADE2ics-0.1.tar.gz
-            $ tar -xzvf ARCADE2ics-0.1.tar.gz
+            $ wget http://cloud.github.com/downloads/tomjnixon/ARCADE2ics/ARCADE2ics-0.1.1.tar.gz
+            $ tar -xzvf ARCADE2ics-0.1.1.tar.gz
 
     -   Check out the latest version from git:
 
