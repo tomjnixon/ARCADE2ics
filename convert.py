@@ -1,5 +1,5 @@
 import re
-from icalendar import Calendar, Event
+import icalendar
 from icalendar import UTC
 from datetime import datetime, date
 import time
@@ -137,7 +137,7 @@ def get_summary(event):
 
 def make_event(event, descriptions, time_stamp):
     """Make an iCal event from an ARCADE event."""
-    vevent = Event()
+    vevent = icalendar.Event()
     minute, hour, day, month = get_time(event, descriptions)
     year = time_stamp.year
 
@@ -164,7 +164,7 @@ def make_event(event, descriptions, time_stamp):
     
 def make_cal(events, descriptions, time_stamp):
     """Make an iCalendar object from a set of events and descriptions."""
-    cal = Calendar()
+    cal = icalendar.Calendar()
     cal.add('prodid', '-//ARCADE to iCal Converter//nixont9@cs.man.ac.uk//EN')
     cal.add('version', '2.0')
     for event in events:
