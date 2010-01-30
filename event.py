@@ -1,4 +1,4 @@
-
+import os
 
 def get_from_descriptions(name, desc_name, default=None):
     def get(self):
@@ -51,3 +51,6 @@ class Event(object):
         return "%s %s" % (self.unit, self.session)
 
 
+    @property
+    def uid(self):
+        return "%s/%s" % (md5(self.event_str), os.getenv("USER"))
