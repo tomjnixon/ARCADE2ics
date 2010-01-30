@@ -100,16 +100,6 @@ def get_time(event, descriptions):
             minute, hour = None, None
     return (minute, hour, day, month)
 
-def get_room(event, descriptions):
-    """Get the room from event, otherwise try to find it in descriptions,
-    otherwise return none."""
-    if "room" in event:
-        return event["room"]
-    elif event["unit"] in descriptions:
-        return descriptions[event["unit"]].get("room", None)
-    else:
-        return None
-
 
 def make_event(event, descriptions, time_stamp):
     """Make an iCal event from an ARCADE event."""
@@ -129,9 +119,8 @@ def make_event(event, descriptions, time_stamp):
     if not whole_day:
         vevent.add('dtend', datetime(year, month, day, hour + 1, minute, tzinfo=UTC))
 
-    room = get_room(event, descriptions)
-    if room: 
-        vevent.add('location', room)
+    if event.room: 
+        vevent.add('location', event.room)
 
     vevent.add('dtstamp', time_stamp)
     vevent["uid"] = "%s/%s" % (md5(event["raw"]), os.getenv("USER"))
