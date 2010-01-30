@@ -73,7 +73,7 @@ def make_event(event, descriptions, time_stamp):
         vevent.add('location', event.room)
 
     vevent.add('dtstamp', time_stamp)
-    vevent["uid"] = "%s/%s" % (md5(event.event_str), os.getenv("USER"))
+    vevent["uid"] = event.uid
     return vevent
 
     
