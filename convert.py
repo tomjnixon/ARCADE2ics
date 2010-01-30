@@ -4,16 +4,7 @@ from icalendar import UTC
 from datetime import datetime, date
 import time
 import os
-
-# Try to use hashlib, otherwise fall back on the old md5 module.
-try: 
-    import hashlib
-    def md5(data):
-        return hashlib.md5(data).hexdigest()
-except ImportError:
-    import md5 as _md5
-    def md5(data):
-        return _md5.new(data).hexdigest()
+from compatibility import *
 
 desc_time_re = re.compile("are at (\S*)")
 desc_room_re = re.compile("in room (\S*)")
