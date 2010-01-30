@@ -100,25 +100,6 @@ def get_time(event, descriptions):
             minute, hour = None, None
     return (minute, hour, day, month)
 
-
-def parse_event(event_str):
-    """Parse an event into a dictionary with keys:
-    "raw" - the original event string, "date", "session", "unit", "group",
-    and possibly "room", and "time"
-    """
-    tokens = filter(len, event_str.split())
-    event = {"raw" : event_str}
-    event["date"] = tokens.pop(0)
-    event["session"] = tokens.pop()
-    if hour_re.match(tokens[0]):
-        event["time"] = tokens.pop(0)
-    event["unit"] = tokens.pop(0)
-    event["group"] = tokens.pop(0)
-    if tokens:
-        event["room"] = tokens.pop(0)
-    return event
-
-
 def get_room(event, descriptions):
     """Get the room from event, otherwise try to find it in descriptions,
     otherwise return none."""
