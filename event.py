@@ -1,4 +1,5 @@
 import os
+from compatibility import *
 
 def get_from_descriptions(name, desc_name, default=None):
     def get(self):
@@ -46,7 +47,7 @@ class Event(object):
             self._room = tokens.pop(0)
 
     @property
-    def summary(event):
+    def summary(self):
         """Get the summary"""
         return "%s %s" % (self.unit, self.session)
 
