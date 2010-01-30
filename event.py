@@ -45,3 +45,9 @@ class Event(object):
         if tokens:
             self._room = tokens.pop(0)
 
+    @property
+    def summary(event):
+        """Get the summary"""
+        return "%s %s" % (self.unit, self.session)
+
+

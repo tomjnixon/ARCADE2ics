@@ -111,11 +111,6 @@ def get_room(event, descriptions):
         return None
 
 
-def get_summary(event):
-    """Get the summary for a celendar from event."""
-    return "%s %s" % (event["unit"], event["session"])
-
-
 def make_event(event, descriptions, time_stamp):
     """Make an iCal event from an ARCADE event."""
     vevent = icalendar.Event()
@@ -128,7 +123,7 @@ def make_event(event, descriptions, time_stamp):
     else:
         startdate = datetime(year, month, day, hour, minute, tzinfo=UTC)
 
-    vevent.add('summary', get_summary(event))
+    vevent.add('summary', event.summary)
     vevent.add('dtstart', startdate)
 
     if not whole_day:
