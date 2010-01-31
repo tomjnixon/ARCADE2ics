@@ -1,6 +1,7 @@
 import os
 from compatibility import *
 import re
+from config import get_category
 
 date_re = re.compile("(\d+)/(\d+)")
 hour_re = re.compile("[\d:]+[ap]m")
@@ -113,4 +114,8 @@ class Event(object):
 
         return (minute, hour, day, month)
 
+
+    @property
+    def category(self):
+        return get_category(self)
 

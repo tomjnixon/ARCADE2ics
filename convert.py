@@ -73,6 +73,9 @@ def make_event(event, time_stamp):
     if event.room: 
         vevent.add('location', event.room)
 
+    if event.category:
+        vevent.add('categories', event.category)
+
     vevent.add('dtstamp', time_stamp)
     vevent["uid"] = event.uid
     return vevent
