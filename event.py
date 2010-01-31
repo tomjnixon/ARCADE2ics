@@ -27,6 +27,9 @@ def parse_time(time_str):
 
     
 def get_from_descriptions(name, desc_name, default=None):
+    """Return a function that tries to return property 'name' from self,
+    or falls back on 'desc_name' from descriptions if the property is None.
+    If that fails, it returns default (normally None)."""
     def get(self):
         if hasattr(self, name) and getattr(self, name) is not None:
             return getattr(self, name)
@@ -79,24 +82,28 @@ class Event(object):
 
     @property
     def summary(self):
-        """Get the summary"""
+        """The summary of the event."""
         return "%s %s" % (self.unit, self.session)
 
 
     @property
     def uid(self):
+        """The unique ics id of the event."""
         return "%s/%s" % (md5(self.event_str), os.getenv("USER"))
 
 
     @property 
     def date(self):
+        """The date of the event, in the format (day, month)"""
         day, month = map(int, date_re.search(self.date_str).groups())
         return (day, month)
 
     
     @property
     def time(self):
-        """Get the time (and date) from an event."""
+        """Get the time (and date) from an event 
+        in the format (minute, hour, day, month)
+        """
         day, month = self.date
 
         if self.time_str:
