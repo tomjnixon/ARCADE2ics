@@ -1,6 +1,6 @@
 import os
 from compatibility import *
-
+import re
 
 date_re = re.compile("(\d+)/(\d+)")
 hour_re = re.compile("[\d:]+[ap]m")
@@ -51,17 +51,17 @@ class Event(object):
 
 
     @classmethod
-    def set_descriptions(class, descriptions):
-        class.descriptions = descriptions
+    def set_descriptions(cls, descriptions):
+        cls.descriptions = descriptions
 
 
     room = property(get_from_descriptions("_room", "room"))
 
         
-    time_str = property(get_from_descriprions("_time", "time"))
+    time_str = property(get_from_descriptions("_time", "time"))
 
 
-    def parse_event(event_str):
+    def parse_event(self, event_str):
         """Parse an event, setting the following 
         "raw" - the original event string, "date", "session", "unit", "group",
         and possibly "room", and "time"
@@ -102,7 +102,7 @@ class Event(object):
         if self.time_str:
             minute, hour = parse_time(self.time_str)
         else:
-            munite, hour = None, None
+            minute, hour = None, None
 
         return (minute, hour, day, month)
 

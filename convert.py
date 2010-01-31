@@ -4,6 +4,7 @@ from icalendar import UTC
 from datetime import datetime, date
 import time
 import os
+from event import Event
 from compatibility import *
 
 desc_time_re = re.compile("are at (\S*)")
@@ -17,7 +18,7 @@ def get_events(table_str):
     lines = [line for line in lines if line.count('-') < 20]
     # Join the lines back together again (apart from the first), split at '|'s,
     # strip the whitespace, remove empty fields, and finally parse each event.
-    return map(parse_event,
+    return map(Event,
                filter(len,
                       map(str.strip, ''.join(lines[1:]).split('|'))))
 
@@ -51,7 +52,7 @@ def get_descriptions(descriptions_str):
     return dict((desc["code"], desc) for desc in descriptions)
 
 
-def make_event(event, descriptions, time_stamp):
+def make_event(event, time_stamp):
     """Make an iCal event from an ARCADE event."""
     vevent = icalendar.Event()
     minute, hour, day, month = event.time
@@ -77,20 +78,21 @@ def make_event(event, descriptions, time_stamp):
     return vevent
 
     
-def make_cal(events, descriptions, time_stamp):
+def make_cal(events, time_stamp):
     """Make an iCalendar object from a set of events and descriptions."""
     cal = icalendar.Calendar()
     cal.add('prodid', '-//ARCADE to iCal Converter//nixont9@cs.man.ac.uk//EN')
     cal.add('version', '2.0')
     for event in events:
-        cal.add_component(make_event(event, descriptions, time_stamp))
+        cal.add_component(make_event(event, time_stamp))
     return cal
 
 def write_cal(descriptions_str, events_str, time_stamp, file_name):
     """Write a .ics file to file_name."""
     descriptions = get_descriptions(descriptions_str)
+    Event.set_descriptions(descriptions)
     events = get_events(events_str)
-    ical_string = make_cal(events, descriptions, time_stamp).as_string()
+    ical_string = make_cal(events, time_stamp).as_string()
 
     f = open(os.path.expanduser(file_name), 'wb')
     f.write(ical_string)
