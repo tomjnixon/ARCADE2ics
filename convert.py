@@ -63,12 +63,14 @@ def make_event(event, time_stamp):
         startdate = date(year, month, day)
     else:
         startdate = datetime(year, month, day, hour, minute, tzinfo=UTC)
+        enddate = datetime(year, month, day, 
+                           hour + event.length, minute, tzinfo=UTC)
 
     vevent.add('summary', event.summary)
     vevent.add('dtstart', startdate)
 
     if not whole_day:
-        vevent.add('dtend', datetime(year, month, day, hour + 1, minute, tzinfo=UTC))
+        vevent.add('dtend', enddate)
 
     if event.room: 
         vevent.add('location', event.room)

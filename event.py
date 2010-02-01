@@ -1,7 +1,7 @@
 import os
 from compatibility import *
 import re
-from config import get_category
+from config import get_category, get_length
 
 date_re = re.compile("(\d+)/(\d+)")
 hour_re = re.compile("[\d:]+[ap]m")
@@ -119,3 +119,7 @@ class Event(object):
     def category(self):
         return get_category(self)
 
+
+    @property
+    def length(self):
+        return get_length(self)
