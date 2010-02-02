@@ -25,7 +25,8 @@ other_categories = {"Tut\d" : "Tutorials"}
 
 # A map from a regex to match the unit name to the length in hours.
 # The 'None' case is used by default.
-unit_lengths = [("\d{4,}L", 2),
+unit_lengths = [("10902L",  1),
+                ("\d{4,}L", 2),
                 (None,      1)]
 
 # You shouldn't need to change anything below here.
