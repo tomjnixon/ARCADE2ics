@@ -1,7 +1,7 @@
 import os
 from compatibility import *
 import re
-from config import get_category, get_length
+from config import get_category, get_length, get_normal_unit
 
 date_re = re.compile("(\d+)/(\d+)")
 hour_re = re.compile("[\d:]+[ap]m")
@@ -47,6 +47,7 @@ class Event(object):
     _time = None
     room = None
     descriptions = None
+    unit_names = None
 
 
     def __init__(self, event_str):
@@ -57,6 +58,11 @@ class Event(object):
     @classmethod
     def set_descriptions(cls, descriptions):
         cls.descriptions = descriptions
+
+
+    @classmethod
+    def set_unit_names(cls, unit_names):
+        cls.unit_names = unit_names
 
 
     room = property(get_from_descriptions("_room", "room"))
@@ -84,7 +90,7 @@ class Event(object):
     @property
     def summary(self):
         """The summary of the event."""
-        return "%s %s" % (self.unit, self.session)
+        return "%s %s %s" % (self.title, self.category, self.session)
 
 
     @property
@@ -123,3 +129,8 @@ class Event(object):
     @property
     def length(self):
         return get_length(self)
+
+
+    @property
+    def title(self):
+        return self.unit_names[get_normal_unit(self.unit)]
