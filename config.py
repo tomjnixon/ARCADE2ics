@@ -39,7 +39,7 @@ _main_re = re.compile(main_re)
 def get_category(event):
     "Take an event, and find the category."
     if _main_re.match(event.unit):
-        return main_categories.get(event.unit[-1], None)
+        return main_categories.get(event.unit[-1], event.unit[-1])
     else:
         for regex in other_categories:
             if re.match(regex, event.unit):
