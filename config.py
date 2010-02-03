@@ -11,9 +11,10 @@ subject = "ARCADE Session details"
 
 
 # This maps the last character of a class name to the category.
-main_categories = {'L' : "Labs",
-                   'S' : "Lectures",
-                   'E' : "Examples Classes"}
+main_categories = {'L' : "Lab",
+                   'S' : "Lecture",
+                   'E' : "Examples Class",
+                   'C' : "Submit"}
 
 # If the unit name matches this, then the category is selected 
 # from main_categories, otherwise other_categories is used.
