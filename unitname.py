@@ -2,7 +2,8 @@ import urllib2
 from BeautifulSoup import BeautifulSoup
 import sys
 import re
-import json
+#import json
+import pprint
 from config import unit_titles, get_normal_unit
 from UserDict import UserDict
 import os.path
@@ -27,15 +28,18 @@ class UnitNames(UserDict):
     def read(self):
         """Read the unit names from disk."""
         try:
-            self.data = json.load(open(self.file_name))
+            #self.data = json.load(open(self.file_name))
+            self.data = eval(open(self.file_name).read())
         except:
             pass
 
 
     def write(self):
         """Write the unit names to disk."""
-        json.dump(self.data, open(self.file_name, 'w'),
-                  indent=4)
+        # json.dump(self.data, open(self.file_name, 'w'),
+        #           indent=4)
+        pprint.pprint(self.data, open(self.file_name, 'w'),
+                      indent=4, width=10)
 
 
     def __getitem__(self, unit):
