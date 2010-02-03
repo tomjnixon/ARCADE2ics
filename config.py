@@ -2,7 +2,7 @@
 # Change these if you require different input/output files.
 mailbox = "~/.cs_maildir/Inbox"
 ical = "~/public_html/timetable.ics"
-
+unit_titles = "~/.unit_titles"
 
 # These should not need changing unless you
 # are not at the University of Manchester
@@ -18,10 +18,10 @@ main_categories = {'L' : "Lab",
 
 # If the unit name matches this, then the category is selected 
 # from main_categories, otherwise other_categories is used.
-main_re = "\d{4,}\D"
+main_re = "(\d{4,})\D"
 
 # Other categories to try - the keys are regular expressions.
-other_categories = {"Tut\d" : "Tutorials"}
+other_categories = {"Tut\d" : "Tutorial"}
 
 
 # A map from a regex to match the unit name to the length in hours.
@@ -36,6 +36,16 @@ unit_lengths = [("10902L",  1),
 import re
 
 _main_re = re.compile(main_re)
+
+
+def get_normal_unit(unit):
+    """Get the normal representation of a unit."""
+    match = _main_re.match(unit)
+    if match:
+        return match.group(1)
+    else:
+        return unit
+
 
 def get_category(event):
     "Take an event, and find the category."

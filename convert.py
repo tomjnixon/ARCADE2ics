@@ -5,6 +5,7 @@ from datetime import datetime, date
 import time
 import os
 from event import Event
+from unitname import UnitNames
 from compatibility import *
 
 desc_time_re = re.compile("are at (\S*)")
@@ -94,11 +95,19 @@ def make_cal(events, time_stamp):
 
 def write_cal(descriptions_str, events_str, time_stamp, file_name):
     """Write a .ics file to file_name."""
+    # Parse the descriptions.
     descriptions = get_descriptions(descriptions_str)
+    # Set up the event class.
     Event.set_descriptions(descriptions)
+    # Read the unit names from the user's local file.
+    unit_names = UnitNames()
+    Event.set_unit_names(unit_names)
+    # Parse the events and write the calendar.
     events = get_events(events_str)
     ical_string = make_cal(events, time_stamp).as_string()
-
+    # Write the calendar to the .ics file.
     f = open(os.path.expanduser(file_name), 'wb')
     f.write(ical_string)
     f.close()
+    unit_names.write()
+
