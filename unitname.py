@@ -5,6 +5,7 @@ import re
 #import json
 import pprint
 from config import unit_titles, get_normal_unit
+from unitname_defaults import unit_names_default
 from UserDict import UserDict
 import os.path
 
@@ -31,7 +32,7 @@ class UnitNames(UserDict):
             #self.data = json.load(open(self.file_name))
             self.data = eval(open(self.file_name).read())
         except:
-            pass
+            self.data = unit_names_default
 
 
     def write(self):
