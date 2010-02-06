@@ -41,4 +41,6 @@ Licence
 -------
 All ARCADE2ics code is published under the MIT Licence (see MIT-LICENCE.txt), and is copyright (c) 2010 Thomas Nixon.
 
-The iCalendar module is published under the LGPL (see icalendar/LICENCE.txt), from [http://codespeak.net/icalendar/](http://codespeak.net/icalendar/), some modifications.
+The iCalendar module is published under the LGPL (see lib/icalendar/LICENCE.txt), from [http://codespeak.net/icalendar/](http://codespeak.net/icalendar/), some modifications.
+
+The BeautifulSoup module is published under the BSD licence (see lib/BeautifulSoup.py), from [http://www.crummy.com/software/BeautifulSoup/](http://www.crummy.com/software/BeautifulSoup/).
