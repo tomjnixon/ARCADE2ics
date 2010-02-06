@@ -1,8 +1,17 @@
 #!/usr/bin/python
+import os
+import sys
+
+# Add src and lib directories to the path.
+# It's a nasty hack, but it means you can just un-tar and go.
+current_dir = os.path.dirname(sys.argv[0])
+sys.path.append(os.path.join(current_dir, "src"))
+sys.path.append(os.path.join(current_dir, "lib"))
+
 import config
 import inbox
 import convert
-import os
+
 from stat import *
 
 def main():
