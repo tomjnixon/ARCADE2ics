@@ -2,7 +2,7 @@
 # A wrapper for the command-line ARCADE client
 # (Originally from the ARCADE in English, ARCADEie, project)
 
-import subprocess
+import subprocess, os
 
 class ArcadeClient:
 	"""
@@ -10,12 +10,17 @@ class ArcadeClient:
 	data to be pulled nicely from arcade.
 	"""
 	def _getOutputFromCommand(self, command):
-		print "Starting arcade..."
-		arcade = subprocess.popen(["arcade"], stdin=subprocess.PIPE,
+		# Remove the display environment variable to force arcade into cli mode
+		del os.environ["DISPLAY"]
+		
+		# A file to write arcade errors into
+		arcadeErrors = open("ARCADE_errors.log","w")
+		
+		arcade = subprocess.Popen(["arcade"], env=os.environ,
+		                                      stdin=subprocess.PIPE,
+		                                      stderr=arcadeErrors,
 		                                      stdout=subprocess.PIPE)
-		print "Running arcade command '%s'..."%(command)
 		output, _ = arcade.communicate(command)
-		print "Done!"
 		return output
 	
 	@property

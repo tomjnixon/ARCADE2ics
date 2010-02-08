@@ -16,12 +16,17 @@ from icalendar import UTC
 
 from stat import *
 
-import ARCADE
+import ARCADE, sys
 
 
 def main():
     # Read the descriptions and the table from arcade
+    print "Running ARCADE... (cross your fingers now) ",
+    sys.stdout.flush()
+    
     input = ARCADE.ArcadeClient().timetable
+    
+    print "OK! (Probably.)"
     
     # Find the descriptions and the table.
     descriptions, table = inbox.get_parts(input)
