@@ -28,15 +28,22 @@ def find_arcade_email(box):
     raise Exception("No recognised emails in inbox.")
             
 
+def get_parts(arcade_str):
+    """Extract descriptions and the table from 
+    a string containing ARCADE output.
+    """
+    parts = arcade_str.split("\n\n")
+    for i in reversed(xrange(len(parts))):
+        if is_arcade_part(parts[i]):
+            return parts[i-1], parts[i]
+
+
 def get_recent_sessions(file_name):
     """Extract descriptions and the table from email file file_name."""
     box = mbox.parse(file_name)    
     msg = find_arcade_email(box)
     
-    parts = msg.body.split("\n\n")
-    for i in reversed(xrange(len(parts))):
-        if is_arcade_part(parts[i]):
-            return (parts[i-1], parts[i], msg.date)
-
+    descriptions, table = get_parts(msg.body)
+    return descriptions, table, msg.date
 
 
