@@ -23,13 +23,9 @@ class ArcadeClient:
 		output, _ = arcade.communicate(command)
 		return output
 	
-	@property
-	def timetable(self):
+	def getTimetable(self):
 		rawArcadeOutput = self._getOutputFromCommand("c7qqrx")
 		
-		# The actual data is contained between bars of =
-		usefulSection = rawArcadeOutput.split("="*79)[1]
-		
 		# Convert line-endings to unix-style
-		usefulSection = usefulSection.replace("\n\r","\n")
-		return usefulSection
+		arcadeOutput = rawArcadeOutput.replace("\n\r","\n")
+		return arcadeOuptput

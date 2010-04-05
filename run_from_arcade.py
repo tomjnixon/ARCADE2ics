@@ -24,7 +24,7 @@ def main():
     print "Running ARCADE... (cross your fingers now) ",
     sys.stdout.flush()
     
-    input = ARCADE.ArcadeClient().timetable
+    input = ARCADE.ArcadeClient().getTimetable()
     
     print "OK! (Probably.)"
     
