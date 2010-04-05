@@ -1,6 +1,5 @@
 import re
 import icalendar
-from icalendar import UTC
 from datetime import datetime, date
 import time
 import os
@@ -63,9 +62,9 @@ def make_event(event, time_stamp):
     if whole_day:
         startdate = date(year, month, day)
     else:
-        startdate = datetime(year, month, day, hour, minute, tzinfo=UTC)
+        startdate = datetime(year, month, day, hour, minute)
         enddate = datetime(year, month, day, 
-                           hour + event.length, minute, tzinfo=UTC)
+                           hour + event.length, minute)
 
     vevent.add('summary', event.summary)
     vevent.add('dtstart', startdate)
