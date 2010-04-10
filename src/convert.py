@@ -10,17 +10,32 @@ from compatibility import *
 desc_time_re = re.compile("are at (\S*)")
 desc_room_re = re.compile("in room (\S*)")
 
-def get_events(table_str):
-    """Split a table up into fields."""
+def get_events(table_str, descriptions_str):
+    """Split a table up into fields, and interpolate with descriptions."""
+    # Parse the descriptions.
+    descriptions = get_descriptions(descriptions_str)
+
     # Split into lines
     lines = map(str.strip, table_str.split('\n'))
     # Remove horizontal dividers
     lines = [line for line in lines if line.count('-') < 20]
     # Join the lines back together again (apart from the first), split at '|'s,
     # strip the whitespace, remove empty fields, and finally parse each event.
-    return map(Event,
-               filter(len,
-                      map(str.strip, ''.join(lines[1:]).split('|'))))
+    return [Event(event_str, descriptions) 
+            for event_str 
+            in map(str.strip, ''.join(lines[1:]).split('|'))
+            if len(event_str)]
+
+
+def get_events_from_parts(parts):
+    """Get all events from a list of pairs of description 
+    and table strings from ARCADE
+    x"""
+    events = []
+    # Find the descriptions and the table.
+    for descriptions, table in parts:
+        events += get_events(table, descriptions)
+    return events
 
 
 def parse_description(line):
@@ -37,7 +52,7 @@ def parse_description(line):
     room_match = desc_room_re.search(line)
     if room_match:
         description["room"] = room_match.group(1)
-        
+
     return description
 
 
@@ -92,21 +107,12 @@ def make_cal(events, time_stamp):
         cal.add_component(make_event(event, time_stamp))
     return cal
 
-def write_cal(descriptions_str, events_str, time_stamp, file_name):
+def write_cal(events, time_stamp, file_name):
     """Write a .ics file to file_name."""
-    # Parse the descriptions.
-    descriptions = get_descriptions(descriptions_str)
-    # Set up the event class.
-    Event.set_descriptions(descriptions)
-    # Read the unit names from the user's local file.
-    unit_names = UnitNames()
-    Event.set_unit_names(unit_names)
-    # Parse the events and write the calendar.
-    events = get_events(events_str)
     ical_string = make_cal(events, time_stamp).as_string()
     # Write the calendar to the .ics file.
     f = open(os.path.expanduser(file_name), 'wb')
     f.write(ical_string)
     f.close()
-    unit_names.write()
+    Event.unit_names.write()
 

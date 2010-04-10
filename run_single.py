@@ -1,37 +1,29 @@
 #!/usr/bin/python
-import os
+import run
+run.init()
+
 import sys
 import datetime
 
-# Add src and lib directories to the path.
-# It's a nasty hack, but it means you can just un-tar and go.
-current_dir = os.path.dirname(sys.argv[0])
-sys.path.append(os.path.join(current_dir, "src"))
-sys.path.append(os.path.join(current_dir, "lib"))
-
-import config
 import inbox
-import convert
 from icalendar import UTC
 
-from stat import *
+import ARCADE
 
 
 def main():
     # Read the descriptions and the table from stdin.
     input = sys.stdin.read()
     
-    # Find the descriptions and the table.
-    descriptions, table = inbox.get_parts(input)
+    # Get the parts
+    parts = inbox.get_parts(input)
+
     # Use the current time as the timestamp.
     time_stamp = datetime.datetime.now(UTC)
 
     # Write the iCal file
-    convert.write_cal(descriptions, table, time_stamp, config.ical)
+    run.run_with_input(parts, time_stamp)
 
-    # Make the iCal file readable by all.
-    os.chmod(os.path.expanduser(config.ical),
-             S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)
 
 
 if __name__ == "__main__":

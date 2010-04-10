@@ -2,7 +2,7 @@ import os
 from compatibility import *
 import re
 from config import get_category, get_length, get_normal_unit
-
+from unitname import UnitNames
 date_re = re.compile("(\d+)/(\d+)")
 hour_re = re.compile("[\d:]+[ap]m")
 time_parse_re = re.compile("(\d+):?(\d*)([ap]m)")
@@ -48,21 +48,16 @@ class Event(object):
     room = None
     descriptions = None
     unit_names = None
+    group = None
 
-
-    def __init__(self, event_str):
+    def __init__(self, event_str, descriptions={}):
         self.event_str = event_str
+        self.descriptions = descriptions
         self.parse_event(event_str)
 
 
-    @classmethod
-    def set_descriptions(cls, descriptions):
-        cls.descriptions = descriptions
-
-
-    @classmethod
-    def set_unit_names(cls, unit_names):
-        cls.unit_names = unit_names
+    # Read the unit names from the user's local file.
+    unit_names = UnitNames()
 
 
     room = property(get_from_descriptions("_room", "room"))
@@ -82,7 +77,8 @@ class Event(object):
         if hour_re.match(tokens[0]):
             self._time = tokens.pop(0)
         self.unit = tokens.pop(0)
-        self.group = tokens.pop(0)
+        if tokens:
+            self.group = tokens.pop(0)
         if tokens:
             self._room = tokens.pop(0)
 
@@ -134,3 +130,5 @@ class Event(object):
     @property
     def title(self):
         return self.unit_names[get_normal_unit(self.unit)]
+
+

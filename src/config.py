@@ -14,7 +14,8 @@ subject = "ARCADE Session details"
 main_categories = {'L' : "Lab",
                    'S' : "Lecture",
                    'E' : "Examples Class",
-                   'C' : "Submit"}
+                   'C' : "Submit",
+                   'X' : "Exam"}
 
 # If the unit name matches this, then the category is selected 
 # from main_categories, otherwise other_categories is used.

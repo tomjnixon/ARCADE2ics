@@ -33,9 +33,9 @@ def get_parts(arcade_str):
     a string containing ARCADE output.
     """
     parts = arcade_str.split("\n\n")
-    for i in reversed(xrange(len(parts))):
+    for i in xrange(1, len(parts)):
         if is_arcade_part(parts[i]):
-            return parts[i-1], parts[i]
+            yield parts[i-1], parts[i]
 
 
 def get_recent_sessions(file_name):
@@ -43,7 +43,7 @@ def get_recent_sessions(file_name):
     box = mbox.parse(file_name)    
     msg = find_arcade_email(box)
     
-    descriptions, table = get_parts(msg.body)
-    return descriptions, table, msg.date
+    parts = get_parts(msg.body)
+    return parts, msg.date
 
 
