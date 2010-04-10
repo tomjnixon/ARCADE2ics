@@ -28,4 +28,4 @@ class ArcadeClient:
 		
 		# Convert line-endings to unix-style
 		arcadeOutput = rawArcadeOutput.replace("\n\r","\n")
-		return arcadeOuptput
+		return arcadeOutput
