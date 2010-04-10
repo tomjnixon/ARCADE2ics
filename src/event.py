@@ -86,7 +86,14 @@ class Event(object):
     @property
     def summary(self):
         """The summary of the event."""
-        return "%s %s %s" % (self.title, self.category, self.session)
+        summary = self.title
+
+        if self.category:
+            summary += " " + self.category
+
+        summary += " " + self.session
+
+        return summary
 
 
     @property
