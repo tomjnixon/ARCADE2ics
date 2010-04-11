@@ -11,7 +11,8 @@ class ArcadeClient:
 	"""
 	def _getOutputFromCommand(self, command):
 		# Remove the display environment variable to force arcade into cli mode
-		del os.environ["DISPLAY"]
+		if "DISPLAY" in os.environ:
+			del os.environ["DISPLAY"]
 		
 		# A file to write arcade errors into
 		try:
