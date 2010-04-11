@@ -14,7 +14,10 @@ class ArcadeClient:
 		del os.environ["DISPLAY"]
 		
 		# A file to write arcade errors into
-		arcadeErrors = open("ARCADE_errors.log","w")
+		try:
+			arcadeErrors = open("ARCADE_errors.log","w")
+		except:
+			arcadeErrors = open("/dev/null","w")
 		
 		arcade = subprocess.Popen(["arcade"], env=os.environ,
 		                                      stdin=subprocess.PIPE,
