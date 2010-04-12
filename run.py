@@ -14,6 +14,7 @@ init()
 import config
 import inbox
 import convert
+import exams
 
 from stat import *
 
@@ -23,7 +24,7 @@ def run_with_input(parts, time_stamp):
     chmod-ing to 644. This is the common function of all run_*.py files.
     """
     # Get event objects from parts.
-    events = convert.get_events_from_parts(parts)
+    events = convert.get_events_from_parts(parts) + list(exams.get_exam_events())
     # Write the iCal file.
     convert.write_cal(events, time_stamp, config.ical)
     # Make the iCal file readable by all.
