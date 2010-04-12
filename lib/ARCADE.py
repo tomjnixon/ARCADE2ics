@@ -20,7 +20,7 @@ class ArcadeClient:
 		except:
 			arcadeErrors = open("/dev/null","w")
 		
-		arcade = subprocess.Popen(["arcade"], env=os.environ,
+		arcade = subprocess.Popen(["/opt/teaching/bin/arcade"], env=os.environ,
 		                                      stdin=subprocess.PIPE,
 		                                      stderr=arcadeErrors,
 		                                      stdout=subprocess.PIPE)
