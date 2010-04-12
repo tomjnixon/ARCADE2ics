@@ -1,6 +1,7 @@
 import os
 from compatibility import *
 import re
+from datetime import datetime, timedelta, date
 from config import get_category, get_length, get_normal_unit
 from unitname import UnitNames
 date_re = re.compile("(\d+)/(\d+)")
@@ -50,9 +51,10 @@ class Event(object):
     unit_names = None
     group = None
 
-    def __init__(self, event_str, descriptions={}):
+    def __init__(self, event_str, descriptions={}, year = None):
         self.event_str = event_str
         self.descriptions = descriptions
+        self.year = year
         self.parse_event(event_str)
 
 
@@ -122,6 +124,25 @@ class Event(object):
             minute, hour = None, None
 
         return (minute, hour, day, month)
+
+
+    @property
+    def datetime_start(self):
+        minute, hour, day, month = self.time
+        if not self.whole_day:
+            return datetime(self.year, month, day, hour, minute)
+        else:
+            return date(self.year, month, day)
+
+
+    @property
+    def datetime_end(self):
+        return self.datetime_start + timedelta(hours = self.length)
+
+
+    @property
+    def whole_day(self):
+        return not bool(self.time_str)
 
 
     @property

@@ -71,21 +71,13 @@ def make_event(event, time_stamp):
     """Make an iCal event from an ARCADE event."""
     vevent = icalendar.Event()
     minute, hour, day, month = event.time
-    year = time_stamp.year
-
-    whole_day = minute is None or hour is None
-    if whole_day:
-        startdate = date(year, month, day)
-    else:
-        startdate = datetime(year, month, day, hour, minute)
-        enddate = datetime(year, month, day, 
-                           hour + event.length, minute)
+    event.year = time_stamp.year
 
     vevent.add('summary', event.summary)
-    vevent.add('dtstart', startdate)
+    vevent.add('dtstart', event.datetime_start)
 
-    if not whole_day:
-        vevent.add('dtend', enddate)
+    if not event.whole_day:
+        vevent.add('dtend', event.datetime_end)
 
     if event.room: 
         vevent.add('location', event.room)
