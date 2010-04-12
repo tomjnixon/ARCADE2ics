@@ -70,7 +70,6 @@ def get_descriptions(descriptions_str):
 def make_event(event, time_stamp):
     """Make an iCal event from an ARCADE event."""
     vevent = icalendar.Event()
-    minute, hour, day, month = event.time
     event.year = time_stamp.year
 
     vevent.add('summary', event.summary)
@@ -84,6 +83,9 @@ def make_event(event, time_stamp):
 
     if event.category:
         vevent.add('categories', event.category)
+
+    if event.description:
+        vevent.add('description', event.description)
 
     vevent.add('dtstamp', time_stamp)
     vevent["uid"] = event.uid

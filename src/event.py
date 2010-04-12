@@ -160,3 +160,7 @@ class Event(object):
         return self.unit_names[get_normal_unit(self.unit)]
 
 
+    @property
+    def description(self):
+        return ""
+
