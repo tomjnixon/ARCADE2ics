@@ -1,6 +1,7 @@
 import os
 from BeautifulSoup import BeautifulSoup
 from datetime import datetime, timedelta
+import time
 from config import main_categories
 from compatibility import *
 
@@ -26,9 +27,9 @@ def get_exam_events():
     for row in cells:
         code, title, date, location, seat, start, finish = row
 
-        date = datetime.strptime(date, "%d-%b-%y")
-        start = datetime.combine(date, datetime.strptime(start, "%I:%M %p").time())
-        finish = datetime.combine(date, datetime.strptime(finish, "%I:%M %p").time())
+        date = strptime(date, "%d-%b-%y")
+        start = datetime.combine(date, strptime(start, "%I:%M %p").time())
+        finish = datetime.combine(date, strptime(finish, "%I:%M %p").time())
 
         event = MyEvent()
         event.whole_day = False
