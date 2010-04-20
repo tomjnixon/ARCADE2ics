@@ -97,6 +97,7 @@ def make_cal(events, time_stamp):
     cal = icalendar.Calendar()
     cal.add('prodid', '-//ARCADE to iCal Converter//nixont9@cs.man.ac.uk//EN')
     cal.add('version', '2.0')
+    cal.add('x-wr-timezone', "Europe/London")
     for event in events:
         cal.add_component(make_event(event, time_stamp))
     return cal
