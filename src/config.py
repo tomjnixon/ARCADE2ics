@@ -15,6 +15,7 @@ main_categories = {'L' : "Lab",
                    'S' : "Lecture",
                    'E' : "Examples Class",
                    'C' : "Submit",
+                   'W' : "Workshop",
                    'X' : "Exam"}
 
 # If the unit name matches this, then the category is selected 
