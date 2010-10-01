@@ -28,7 +28,7 @@ class ArcadeClient:
 		return output
 	
 	def getTimetable(self):
-		rawArcadeOutput = self._getOutputFromCommand("c7qqrx")
+		rawArcadeOutput = self._getOutputFromCommand("c7qd0qqrx")
 		
 		# Convert line-endings to unix-style
 		arcadeOutput = rawArcadeOutput.replace("\n\r","\n")
