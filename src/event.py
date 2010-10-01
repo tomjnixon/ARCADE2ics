@@ -19,6 +19,9 @@ def parse_time(time_str):
     hour = int(match.group(1))
     if match.group(3) == "pm" and hour != 12:
         hour += 12
+    
+    if match.group(3) == "am" and hour == 12:
+        hour -= 12
 
     if match.group(2):
         minute = int(match.group(2))
