@@ -15,20 +15,12 @@ def parse_time(time_str):
     if time_str == "noon":
         return (0, 12)
 
-    match = time_parse_re.match(time_str)
-    hour = int(match.group(1))
-    if match.group(3) == "pm" and hour != 12:
-        hour += 12
+    try:
+        time = strptime(time_str, "%I%p")
+    except ValueError:
+        time = strptime(time_str, "%I:%M%p")
     
-    if match.group(3) == "am" and hour == 12:
-        hour -= 12
-
-    if match.group(2):
-        minute = int(match.group(2))
-    else:
-        minute = 0
-    
-    return (minute, hour)
+    return (time.minute, time.hour)
 
     
 def get_from_descriptions(name, desc_name, default=None):
