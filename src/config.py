@@ -3,6 +3,7 @@
 mailbox = "~/.cs_maildir/Inbox"
 ical = "~/public_html/timetable.ics"
 unit_titles = "~/.unit_titles"
+user_config_file = "~/.arcadee2ics/config.py"
 
 # These should not need changing unless you
 # are not at the University of Manchester
@@ -75,3 +76,9 @@ def re_guard(guard, test_exp):
                 return exp
         else:
             return exp
+
+# Load the per-user configuration.
+absolute_config = os.path.expanduser(user_config_file)
+if os.path.exists(absolute_config):
+    execfile(absolute_config)
+    
