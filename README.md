@@ -35,7 +35,7 @@ Usage
 - The default iCalendar location is `~/public_html/timetable.ics`
 - This can be accessed at [http://www2.cs.man.ac.uk/~user_name/timetable.ics](http://www2.cs.man.ac.uk/~user_name/timetable.ics)
 - If using Google calendar, this address will not work (due to robots.txt).
-  You may use [http://tnutils.appspot.com/timetable-user_name.ics](http://tnutils.appspot.com/timetable-user_name.ics) instead.
+  You may use [http://tnutils.appspot.com/timetable-user_name.ics](http://tnutils.appspot.com/timetable-user_name.ics) instead. (To add to google calendar, go to Other Calendars -> Add -> Add by URL.)
 - To manually re-generate the timetable, run `run`.
 - To change the names of modules in the calendar, edit `~/.unit_titles`. This is in the form of a python dictionary, and should be fairly self-explanatory.
 
