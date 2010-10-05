@@ -7,25 +7,28 @@ have the latest version available.
 
 Installation
 ------------
-Either:
 
--   Local installation:
-    -   Check out the latest version from git:
+      $ git clone git://github.com/tomjnixon/ARCADE2ics.git
+      $ ./ARCADE2ics/run
 
-            $ git clone git://github.com/tomjnixon/ARCADE2ics.git
+You should be presented with some configuration options. These are explained below:
 
-    -   Run `setup` on the computer which you wish to run this on
-        (this will install it into your crontab).
-        -   For example, to run this on soba.cs.man.ac.uk:
+### Input Method ###
 
-                $ ssh user_name@soba.cs.man.ac.uk "~/ARCADE2ics/setup"
+Chose where ARCADE2ics gets its data from. Highlight any that you want and press "space" to select. You should probably chose `arcade.direct` or `arcade.email`.
 
+### Auto Update ###
 
-- Use my installation - I keep the latest version publicly accessible in my home directory. This ensures that you are always using the latest stable version.
-    -   Run `~nixont9/ARCADE2ics/setup` on the computer which you wish to run this on
-        -   For example, to run this on soba.cs.man.ac.uk:
+If selected, ARCADE2ics will update before it's running, so you'll always be running the latest version with the latest fixes and features.
 
-                $ ssh user_name@soba.cs.man.ac.uk "~nixont9/ARCADE2ics/setup"
+### Send Timetable ###
+
+This option is currently unused, but will soon cause ARCADE2ics to send me a copy of your ARCADE timetable so that I can verify that it's all working properly. You'll probably be making your timetable publicly accessible anyway, so you might as well select this.
+
+### Cron ###
+
+Select this to install to the crontab on this computer. This will make ARCADE2ics run automatically between 3:00 and 4:00 in the morning.
+
 
 Usage
 -----
@@ -33,8 +36,7 @@ Usage
 - This can be accessed at [http://www2.cs.man.ac.uk/~user_name/timetable.ics](http://www2.cs.man.ac.uk/~user_name/timetable.ics)
 - If using Google calendar, this address will not work (due to robots.txt).
   You may use [http://tnutils.appspot.com/timetable-user_name.ics](http://tnutils.appspot.com/timetable-user_name.ics) instead.
-- By default, this is updated every day at 3:30am.
-- To manually re-generate the timetable, run run.py.
+- To manually re-generate the timetable, run `run`.
 - To change the names of modules in the calendar, edit `~/.unit_titles`. This is in the form of a python dictionary, and should be fairly self-explanatory.
 
 Licence
