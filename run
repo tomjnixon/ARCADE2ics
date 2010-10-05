@@ -1,0 +1,27 @@
+#!/bin/bash
+
+dir=$(dirname $(readlink -f $0))
+cd $dir
+
+if (cd src; python -c "import config; exit(0 if config.auto_update else 1)"); then
+    echo "Updating..."
+    git pull
+    echo "done"
+    
+    echo
+fi
+
+
+config="$HOME/.arcade2ics/config.py"
+
+if [ ! -f "$config" ]; then
+    "$dir/configure"
+    echo
+fi
+
+
+echo "Running..."
+python "$dir/src/run.py"
+echo "done"
+
+

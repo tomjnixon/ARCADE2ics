@@ -1,0 +1,57 @@
+#!/bin/bash
+
+tempfile=$(mktemp)
+echo $tempfile
+config="$HOME/.arcade2ics/config.py"
+config_dir="$HOME/.arcade2ics/"
+
+dir=$(dirname $(readlink -f $0))
+cd $dir
+
+
+function get_true_false() {
+	if dialog --yesno "$1" 0 0; then
+		true_false=True
+	else
+		true_false=False
+	fi
+}
+
+function ask_install_cron() {
+	if dialog --yesno "Install to cron? This will make ARCADE2ics run automatically on this machine." 0 0; then
+		(crontab -l 2>/dev/null | grep -v "ARCADE2ics";
+		 echo "30 3 * * * $dir/run > /dev/null") | crontab -
+	fi
+}
+
+
+if [ -f $config ]; then
+	if ! dialog --yesno "Existing config found. Overwrite it?" 0 0; then
+		ask_install_cron
+		exit 0
+	fi	
+fi
+
+mkdir -p $config_dir
+echo > $config
+
+dialog --checklist "Which input methods?" 0 80 3 "arcade.direct" "Run directly from arcade." 0 \
+                                                 "arcade.email" "Run from arcade emails." 0 \
+                                                 "exams" "Get exam times from ~/exams.html" 0 2> "$tempfile"
+
+echo "input_methods=[$(cat $tempfile | sed 's/ /, /g')]" >> $config
+
+get_true_false "Auto-update arcade2ics?"
+echo "auto_update=$true_false" >> $config
+
+get_true_false "Send timetable to ARCADE2ics developer for quality control purposes? This will be used to keep ARCADE2ics working properly."
+
+echo "debug=$true_false" >> $config
+
+
+ask_install_cron
+
+
+echo "Done!"
+
+

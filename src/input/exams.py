@@ -47,6 +47,4 @@ def get_exam_events():
 
         yield event
 
-
-    
-    
+get_events = get_exam_events

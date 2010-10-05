@@ -3,13 +3,17 @@
 mailbox = "~/.cs_maildir/Inbox"
 ical = "~/public_html/timetable.ics"
 unit_titles = "~/.unit_titles"
-user_config_file = "~/.arcadee2ics/config.py"
+user_config_file = "~/.arcade2ics/config.py"
+
+# General config options
+debug=True
+input_methods=["arcade.direct"]
+auto_update=False
 
 # These should not need changing unless you
 # are not at the University of Manchester
 sender = "jtl@cs.man.ac.uk"
 subject = "ARCADE Session details"
-
 
 # This maps the last character of a class name to the category.
 main_categories = {'L' : "Lab",
@@ -77,7 +81,9 @@ def re_guard(guard, test_exp):
         else:
             return exp
 
+
 # Load the per-user configuration.
+import os
 absolute_config = os.path.expanduser(user_config_file)
 if os.path.exists(absolute_config):
     execfile(absolute_config)
