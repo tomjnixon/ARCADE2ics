@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>ARCADE2ics</title>
+	</head>
+	<body>
+<h1>ARCADE2ics</h1>
+
+<p>ARCADE2ics converts ARCADE emails into iCalendar files that can be imported into
+Google calendar, your phone, or almost any other piece of calendar software.</p>
+
+<p>By default, ARCADE2ics puts your timetable on-line, and updates automatically,
+allowing you to 'subscribe' to the timetable, meaning that you will always
+have the latest version available. </p>
+
+<h2>Installation</h2>
+
+<pre><code>  $ git clone git://github.com/tomjnixon/ARCADE2ics.git
+  $ ./ARCADE2ics/run
+</code></pre>
+
+<p>You should be presented with some configuration options. These are explained below:</p>
+
+<h3>Input Method</h3>
+
+<p>Chose where ARCADE2ics gets its data from. Highlight any that you want and press "space" to select. You should probably chose <code>arcade.direct</code> or <code>arcade.email</code>.</p>
+
+<h3>Auto Update</h3>
+
+<p>If selected, ARCADE2ics will update before it's running, so you'll always be running the latest version with the latest fixes and features.</p>
+
+<h3>Send Timetable</h3>
+
+<p>This option is currently unused, but will soon cause ARCADE2ics to send me a copy of your ARCADE timetable so that I can verify that it's all working properly. You'll probably be making your timetable publicly accessible anyway, so you might as well select this.</p>
+
+<h3>Cron</h3>
+
+<p>Select this to install to the crontab on this computer. This will make ARCADE2ics run automatically between 3:00 and 4:00 in the morning.</p>
+
+<h2>Usage</h2>
+
+<ul>
+<li>The default iCalendar location is <code>~/public_html/timetable.ics</code></li>
+<li>This can be accessed at <a href="http://www2.cs.man.ac.uk/~user_name/timetable.ics">http://www2.cs.man.ac.uk/~user_name/timetable.ics</a></li>
+<li>If using Google calendar, this address will not work (due to robots.txt).
+You may use <a href="http://tnutils.appspot.com/timetable-user_name.ics">http://tnutils.appspot.com/timetable-user_name.ics</a> instead.</li>
+<li>To manually re-generate the timetable, run <code>run</code>.</li>
+<li>To change the names of modules in the calendar, edit <code>~/.unit_titles</code>. This is in the form of a python dictionary, and should be fairly self-explanatory.</li>
+</ul>
+
+<h2>Licence</h2>
+
+<p>All ARCADE2ics code is published under the MIT Licence (see MIT-LICENCE.txt), and is copyright (c) 2010 Thomas Nixon.</p>
+
+<p>The iCalendar module is published under the LGPL (see lib/icalendar/LICENCE.txt), from <a href="http://codespeak.net/icalendar/">http://codespeak.net/icalendar/</a>, some modifications.</p>
+
+<p>The BeautifulSoup module is published under the BSD licence (see lib/BeautifulSoup.py), from <a href="http://www.crummy.com/software/BeautifulSoup/">http://www.crummy.com/software/BeautifulSoup/</a>.</p>
+
+</body>
+</html>
