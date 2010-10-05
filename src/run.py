@@ -13,7 +13,6 @@ init()
 import config
 import inbox
 import convert
-import exams
 
 from stat import *
 import datetime
