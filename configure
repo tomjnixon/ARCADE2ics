@@ -19,8 +19,9 @@ function get_true_false() {
 
 function ask_install_cron() {
 	if dialog --yesno "Install to cron? This will make ARCADE2ics run automatically on this machine." 0 0; then
+		minute=$(python -c "import random as r; print r.randrange(60)")
 		(crontab -l 2>/dev/null | grep -v "ARCADE2ics";
-		 echo "30 3 * * * $dir/run > /dev/null") | crontab -
+		 echo "$minute 3 * * * $dir/run > /dev/null") | crontab -
 	fi
 }
 
