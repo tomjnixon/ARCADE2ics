@@ -50,6 +50,8 @@ def get_normal_unit(unit):
     match = _main_re.match(unit)
     if match:
         return match.group(1)
+    elif unit.startswith("COMP"):
+        return unit[4:]
     else:
         return unit
 
