@@ -1,3 +1,5 @@
+**Please note I graduated in 2012, so while this may still work it is completely unsupported.**
+
 ARCADE2ics converts ARCADE emails into iCalendar files that can be imported into
 Google calendar, your phone, or almost any other piece of calendar software.
 
